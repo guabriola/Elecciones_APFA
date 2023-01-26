@@ -1,0 +1,29 @@
+<title>Ingreso de Lista</title>
+{% extends "layout.html" %}
+{% block title %}Ingrese nueva Lista{% endblock %}<br>
+
+{% block content %}
+<form action="" method="post" novalidate>
+{{ form.hidden_tag() }}
+<div>
+{{ form.nro_lista.label }}
+{{ form.nro_lista(size=64) }}<br>
+</div>
+
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <div>
+    {{ form.presidente.label }}
+    {{ form.presidente(size=64) }}<br>
+    </div>
+
+<form action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    <div>
+    {{ form.vice_presidente.label }}
+    {{ form.vice_presidente(size=64) }}<br>
+    </div>
+
+    {{ form.submit() }}
+
+{% endblock %}

@@ -1,0 +1,17 @@
+<title>Ingrese su voto</title>
+{% extends "layout.html" %}
+
+
+{% block title %}Ingrese su Voto{% endblock %}<br>
+
+{% block content %}
+<form action="" method="post" novalidate>
+{{ form.hidden_tag() }}
+<div>
+{{ form.lista_id.label }}
+{{ form.lista_id}}<br>
+</div>
+
+{{ form.submit() }}
+
+{% endblock %}

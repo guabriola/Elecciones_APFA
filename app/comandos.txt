@@ -1,0 +1,5 @@
+Correr servidor Flask
+flask --app main run --port 5000 --reload 
+
+matar todos los procesos en x puerto:
+kill -9 $(lsof -t -i:"5000")
