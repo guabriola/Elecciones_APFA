@@ -47,6 +47,7 @@ def login():
             session['username'] = form.username.data
             return redirect(url_for('votos_bp.home'))
     return render_template ("login.html", form=form)
+    
 
 #LogOut
 @auth_bp.route('/logout', methods=['GET','POST'])
