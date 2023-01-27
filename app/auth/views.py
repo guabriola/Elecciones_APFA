@@ -45,7 +45,7 @@ def login():
     if form.validate_on_submit():
         if User.query.filter(User.username == form.username.data, User.password==form.password.data).first() != None:
             session['username'] = form.username.data
-            return redirect(url_for('votos_bp.home'))
+            return redirect(url_for('home'))
     return render_template ("login.html", form=form)
     
 

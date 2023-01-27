@@ -6,6 +6,8 @@ from models import *
 class SignupForm(FlaskForm):
     nro_socio = StringField('nro_socio', validators=[DataRequired()])
     username = StringField('Username', validators=[DataRequired()])
+    first_name = StringField('Nombre', validators=[DataRequired()])
+    last_name = StringField('Apellido', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     email = StringField('Email') #, validators=[DataRequired(), Email()]
     submit = SubmitField('Registrar')

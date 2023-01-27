@@ -39,15 +39,13 @@ def vote():
         return redirect(url_for('votos_bp.resultado'))
     return render_template ("vote.html", form=form)
    # return '<h1>Ingrese su voto</h1>'
+   
+
 
 # Ver Votos
 @votos_bp.route('/resultado', methods=['GET','POST'])
 def resultado():
-    print("El total de votos: ")
-    print(Votos.query.count())
-
-    votosXlista = Votos.query.with_entities(Votos.lista_id, func.count(Votos.lista_id)).group_by(Votos.lista_id).all()
-    print(votosXlista)
+    cant_votos =  db.session.query(Listas.nro_lista, func.count(Votos.lista_id)).outerjoin(Votos).group_by(Votos.lista_id).all()
     return render_template ("cantidad_votos.html")
 
 
@@ -55,3 +53,5 @@ def resultado():
 @votos_bp.route('/ya_voto', methods=['GET','POST'])
 def ya_voto():
     return render_template ("ya_voto.html")
+
+
