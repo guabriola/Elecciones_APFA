@@ -6,8 +6,8 @@ from .forms import SignupForm, LoginForm
 
 
 # defino el blueprint
-auth_bp = Blueprint('auth_bp', __name__,
-    template_folder='templates')
+auth_bp = Blueprint("auth_bp", __name__,
+    template_folder="templates")
 
 #Requisito de Logeo
 def login_required(f):
@@ -39,25 +39,25 @@ def has_role(roles=[]):
     return decorator
 
 #Login - es necesario que el Nro de Socio esté en el padron
-@auth_bp.route('/login', methods=['GET','POST'])
+@auth_bp.route("/login", methods=["GET","POST"])
 def login():
     form= LoginForm()
     if form.validate_on_submit():
         if User.query.filter(User.username == form.username.data, User.password==form.password.data).first() != None:
-            session['username'] = form.username.data
-            return redirect(url_for('home'))
+            session["username"] = form.username.data
+            return redirect(url_for("votos_bp.resultado"))
     return render_template ("login.html", form=form)
     
 
 #LogOut
-@auth_bp.route('/logout', methods=['GET','POST'])
+@auth_bp.route("/logout", methods=["GET","POST"])
 def logout():
     session.pop("username")
-    return redirect(url_for("home"))
+    return redirect(url_for("votos_bp.resultado"))
     
-#user = User.query.filter_by(username = username).first()
+
 # register (form, necesita conf. de mail)
-@auth_bp.route('/register', methods=['GET','POST'])
+@auth_bp.route("/register", methods=["GET","POST"])
 def signup():
 	form = SignupForm()
 	if form.validate_on_submit():
@@ -75,6 +75,6 @@ def signup():
 		# guardo el username en la sesión
 		session["username"] = form.username.data
 		# respuesta
-		return redirect(url_for('auth_bp.login'))
+		return redirect(url_for("auth_bp.login"))
     
 	return render_template("register.html", form=form)

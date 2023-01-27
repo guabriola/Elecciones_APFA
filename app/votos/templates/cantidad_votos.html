@@ -2,8 +2,11 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h1>Cantidad de votos</h1>
 
+<h1>Cantidad de votos</h1><br>
+
+<p>Porcentaje de votos: </p>
+{{ porcent_votos }} <p>%</p>
 <table class="table table-striped">
     <thead>
       <tr>
@@ -12,15 +15,17 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Mark</td>
-        <td>Otto</td>
 
-      </tr>
-      <tr>
-        <td>Jacob</td>
-        <td>Thornton</td>
-      </tr>
+        {% for r in cant_votos %}
+            <tr>
+                <td>
+                    {{r.0}}
+                </td>
+                <td>
+                    {{r.1}}
+                </td>
+            <tr>
+        {% endfor %}
     </tbody>
   </table>
 

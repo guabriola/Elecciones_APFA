@@ -8,6 +8,9 @@
 <div>
 {{ form.nro_lista.label }}
 {{ form.nro_lista(size=64) }}<br>
+{% for error in form.nro_lista.errors %}
+<span style="color: red;">{{ error }}</span>
+{% endfor %}
 </div>
 
 <form action="" method="post" novalidate>
@@ -15,6 +18,9 @@
     <div>
     {{ form.presidente.label }}
     {{ form.presidente(size=64) }}<br>
+    {% for error in form.presidente.errors %}
+    <span style="color: red;">{{ error }}</span>
+    {% endfor %}
     </div>
 
 <form action="" method="post" novalidate>
@@ -22,6 +28,9 @@
     <div>
     {{ form.vice_presidente.label }}
     {{ form.vice_presidente(size=64) }}<br>
+    {% for error in form.vice_presidente.errors %}
+    <span style="color: red;">{{ error }}</span>
+    {% endfor %}
     </div>
 
     {{ form.submit() }}

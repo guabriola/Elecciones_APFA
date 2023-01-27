@@ -13,15 +13,15 @@ with app.app_context():
     db.create_all()
 
 
-    if not User.query.filter(User.username == 'admin').first():
+    if not User.query.filter(User.username == "admin").first():
         # creo los roles
-        rol1 = Role(name='admin')
-        rol2 = Role(name='std')
+        rol1 = Role(name="admin")
+        rol2 = Role(name="std")
 
         # creo un usuario admin
         user = User(
-                username='admin',
-                password='1234',
+                username="admin",
+                password="1234",
             )
         user.roles.append(rol1)
 

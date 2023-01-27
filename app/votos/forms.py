@@ -4,7 +4,7 @@ from models import Listas
 
 class VotoForm(FlaskForm):
     lista_id = SelectField()
-    submit = SubmitField('Ingresar')
+    submit = SubmitField("Ingresar")
     
     def __init__(self):
         super(VotoForm, self).__init__()
