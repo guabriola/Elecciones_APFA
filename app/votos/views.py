@@ -4,6 +4,7 @@ from config import db
 from .forms import VotoForm
 from sqlalchemy import func
 from auth.views import has_role, login_required
+import json
 
 # defino el blueprint
 votos_bp = Blueprint('votos_bp', __name__,
@@ -46,6 +47,18 @@ def vote():
 @votos_bp.route('/resultado', methods=['GET','POST'])
 def resultado():
     cant_votos =  db.session.query(Listas.nro_lista, func.count(Votos.lista_id)).outerjoin(Votos).group_by(Votos.lista_id).all()
+    cant_votos_json = []
+    
+    for x in cant_votos:
+        cant_votos_json.append({x[0]:x[1]})
+        
+    jsonStr = json.dumps(cant_votos_json)
+    
+    print(cant_votos)
+    print(cant_votos_json)
+    print(jsonStr)
+    
+    
     return render_template ("cantidad_votos.html")
 
 

@@ -1,9 +1,30 @@
 <title>Cantidad de Votos</title>
 {% extends "layout.html" %}
 
-{% block content %}<h1>Cantidad de votos</h1>{% endblock %}<br>
+{% block content %}
+<h1>Cantidad de votos</h1>
 
-{% for lista in votosXlista %}
-{{lista}}
-{% endfor %}
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Lista</th>
+        <th scope="col">Cantidad de Votos</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mark</td>
+        <td>Otto</td>
+
+      </tr>
+      <tr>
+        <td>Jacob</td>
+        <td>Thornton</td>
+      </tr>
+    </tbody>
+  </table>
+
+{% endblock %}
+
+
 
