@@ -1,62 +1,68 @@
 <title>Register</title>
 {% extends "layout.html" %}
 
-
-
 {% block title %}Registro de usuarios{% endblock %}
 
 {% block content %}
-<form action="" method="post" novalidate>
-{{ form.hidden_tag() }}
-<div>
-{{ form.username.label }}
-{{ form.username(size=64) }}<br>
-{% for error in form.username.errors %}
-<span style="color: red;">{{ error }}</span>
-{% endfor %}
-</div>
 
-<div>
-    {{ form.nro_socio.label }}
-    {{ form.nro_socio(size=64) }}<br>
-    {% for error in form.nro_socio.errors %}
-    <span style="color: red;">{{ error }}</span>
-    {% endfor %}
-</div>
+<div class="d-flex justify-content-center align-items-center" style="height:100vh;">
+    <form action="" method="post" novalidate class="bg-light p-5 text-left">
+    {{ form.hidden_tag() }}
 
-<div>
-    {{ form.first_name.label }}
-    {{ form.first_name }}<br>
-    {% for error in form.first_name.errors %}
-    <span style="color: red;">{{ error }}</span>
-    {% endfor %}
+    <div class="form-group my-4">
+        <label for="{{ form.username.id }}">Usuario</label>
+        {{ form.username(class="form-control", size=64) }}
+        {% for error in form.username.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group my-4">
+        <label for="{{ form.nro_socio.id }}">Número de Socio</label>
+        {{ form.nro_socio(class="form-control", size=64) }}
+        {% for error in form.nro_socio.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group my-4">
+        <label for="{{ form.first_name.id }}">Nombre</label>
+        {{ form.first_name(class="form-control") }}
+        {% for error in form.first_name.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group my-4">
+        <label for="{{ form.last_name.id }}">Apellido</label>
+        {{ form.last_name(class="form-control") }}
+        {% for error in form.last_name.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group my-4">
+        <label for="{{ form.email.id }}">E-Mail</label>
+        {{ form.email(class="form-control") }}
+        {% for error in form.email.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group my-4">
+        <label for="{{ form.password.id }}">Contraseña</label>
+        {{ form.password.label(class="text-secondary", label="Contraseña") }}
+        {{ form.password(class="form-control") }}
+        {% for error in form.password.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+    </div>
+    
+    <div class="form-group mt-3">
+        {{ form.submit(class="btn btn-primary") }}
+    </div>
+    </form>
+    
 </div>
-
-<div>
-    {{ form.last_name.label }}
-    {{ form.last_name }}<br>
-    {% for error in form.last_name.errors %}
-    <span style="color: red;">{{ error }}</span>
-    {% endfor %}
-</div>
-
-<div>
-{{ form.email.label }}
-{{ form.email }}<br>
-{% for error in form.email.errors %}
-<span style="color: red;">{{ error }}</span>
-{% endfor %}
-</div>
-
-<div>
-{{ form.password.label }}
-{{ form.password }}<br>
-{% for error in form.password.errors %}
-<span style="color: red;">{{ error }}</span>
-{% endfor %}
-</div>
-<div>
-{{ form.submit() }}
-</div>
-</form>
+    
 {% endblock %}

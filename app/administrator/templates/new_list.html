@@ -1,38 +1,44 @@
+
 <title>Ingreso de Lista</title>
+
 {% extends "layout.html" %}
+
 {% block title %}Ingrese nueva Lista{% endblock %}<br>
 
 {% block content %}
-<form action="" method="post" novalidate>
-{{ form.hidden_tag() }}
-<div>
-{{ form.nro_lista.label }}
-{{ form.nro_lista(size=64) }}<br>
-{% for error in form.nro_lista.errors %}
-<span style="color: red;">{{ error }}</span>
-{% endfor %}
+
+<div class="d-flex justify-content-center align-items-start" style="height:100vh;">
+	<form action="" method="post" novalidate class="bg-light p-5 text-left">
+		{{ form.hidden_tag() }}
+		
+		<div class="form-group my-4">
+			<label for="{{ form.nro_lista.id }}">Numero de Lista</label>
+			{{ form.nro_lista(class="form-control", size=64) }}
+			{% for error in form.nro_lista.errors %}
+				<span style="color: red;">{{ error }}</span>
+			{% endfor %}
+		</div>
+
+
+		<div class="form-group my-4">
+			<label for="{{ form.presidente.id }}">Nombre del Presidente</label>
+			{{ form.presidente(class="form-control", size=64) }}
+			{% for error in form.presidente.errors %}
+				<span style="color: red;">{{ error }}</span>
+			{% endfor %}
+		</div>
+
+		<div class="form-group my-4">
+			<label for="{{ form.vice_presidente.id }}">Nombre del Vice-Presidente</label>
+			{{ form.vice_presidente(class="form-control", size=64) }}
+			{% for error in form.vice_presidente.errors %}
+				<span style="color: red;">{{ error }}</span>
+			{% endfor %}
+		</div>
+
+		    <div class="form-group mt-3">
+        		{{ form.submit(class="btn btn-primary") }}
+   		</div>
 </div>
-
-<form action="" method="post" novalidate>
-    {{ form.hidden_tag() }}
-    <div>
-    {{ form.presidente.label }}
-    {{ form.presidente(size=64) }}<br>
-    {% for error in form.presidente.errors %}
-    <span style="color: red;">{{ error }}</span>
-    {% endfor %}
-    </div>
-
-<form action="" method="post" novalidate>
-    {{ form.hidden_tag() }}
-    <div>
-    {{ form.vice_presidente.label }}
-    {{ form.vice_presidente(size=64) }}<br>
-    {% for error in form.vice_presidente.errors %}
-    <span style="color: red;">{{ error }}</span>
-    {% endfor %}
-    </div>
-
-    {{ form.submit() }}
 
 {% endblock %}

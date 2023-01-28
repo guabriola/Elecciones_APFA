@@ -1,17 +1,18 @@
 <title>Ingrese su voto</title>
 {% extends "layout.html" %}
 
-
 {% block title %}Ingrese su Voto{% endblock %}<br>
 
 {% block content %}
-<form action="" method="post" novalidate>
-{{ form.hidden_tag() }}
-<div>
-{{ form.lista_id.label }}
-{{ form.lista_id}}<br>
+<div class="d-flex justify-content-center align-items-start" style="height:100vh">
+    <form action="" method="post" class="bg-light p-5 my-4 text-left" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-group d-flex">
+            <label for="{{ form.lista_id.id }}" class="form-control"> Lista a votar: {{ form.lista_id }} </label>
+        </div>
+        <div class="form-group mt-3">
+            {{ form.submit(value="Votar", class="btn btn-primary align-items-center") }}
+        </div>
+    </form>
 </div>
-
-{{ form.submit() }}
-
 {% endblock %}
