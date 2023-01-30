@@ -18,7 +18,7 @@
       </tr>
     </thead>
     <tbody>
-        {% for r in cant_votos %}
+      {% for r in cant_votos|sort(attribute="1", reverse=True) %}
             <tr>
                 <td class="col-4">{{r.0}}</td>
                 <td class="col-4">{{r.1}}</td>

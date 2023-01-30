@@ -43,8 +43,8 @@ class Listas(db.Model):
     __tablename__ = "Listas"
     id = db.Column(db.Integer(), primary_key = True)
     nro_lista = db.Column(db.String(50), unique=True)
-    presidente = db.Column(db.String(50), unique=True)
-    vice_presidente = db.Column(db.String(50), unique=True)
+    presidente = db.Column(db.String(50))
+    vice_presidente = db.Column(db.String(50))
 
 #Defino el modelo de la tabla votos
 class Votos(db.Model):

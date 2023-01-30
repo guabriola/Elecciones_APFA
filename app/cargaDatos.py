@@ -17,18 +17,34 @@ with app.app_context():
         # creo los roles
         rol1 = Role(name="admin")
         rol2 = Role(name="std")
+        
+        db.session.add(rol1)
+        db.session.add(rol2)
 
         # creo un usuario admin
-        user = User(
+        userAdmin = User(
                 username="admin",
                 password="1234",
             )
-        user.roles.append(rol1)
-
-        # agrego
-        db.session.add(rol1)
-        db.session.add(rol2)
-        db.session.add(user)
+        userAdmin.roles.append(rol1)
+        db.session.add(userAdmin)
+        
+        #Creo usuarios Std para votar
+        x = 1
+        while (x <= 3):
+            userStd = User(
+                    username="User" + str(x),
+                    password="1234",
+                )
+            userStd.roles.append(rol2)
+            x+=1
+            #Agrego Session
+            db.session.add(userStd)
+            
+            
+        #Creo listas En blanco y Anulado
+        
+        
 
     # datos para el padrón
     archivo = open("padron.html", "r", encoding="utf8")
