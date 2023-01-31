@@ -3,7 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap5
 from dotenv import load_dotenv
 import os
-from flask_mail import Mail
+from flask_redmail import RedMail
+from redmail import gmail
 
 load_dotenv()
 
@@ -17,24 +18,19 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 app.config['SECRET_KEY'] = os.getenv("SECRET_KEY")
 
 
-#####Configuracion del Correo#####
-SECRET_KEY = os.getenv("SECRET_KEY")
-MAIL_SERVER = 'smtp.gmail.com'
-MAIL_PORT = 465
-MAIL_USE_TLS = False
-MAIL_USE_SSL = True
-# gmail authentication
-MAIL_USERNAME = os.getenv("MAIL_USERNAME")
-MAIL_PASSWORD = os.getenv("MAIL_PASSWORD")
-#pass provisto por Gmail
-# mail accounts
-MAIL_DEFAULT_SENDER = os.getenv("MAIL_DEFAULT_SENDER")
 
 # initialize the app with the extension
+
+
+
 db.init_app(app)
+app.config["EMAIL_HOST"] = gmail.host
+app.config["EMAIL_PORT"] = gmail.port
+app.config["EMAIL_USERNAME"] = os.getenv('MAIL_USERNAME')
+app.config["EMAIL_PASSWORD"] = os.getenv('MAIL_PASSWORD')
+app.config["EMAIL_SENDER"] = os.getenv('MAIL_USERNAME')
 
-mail = Mail()
-mail.init_app(app)
 
-#Bootstrap
+email = RedMail(app)
+# Bootstrap
 bootstrap = Bootstrap5(app)
