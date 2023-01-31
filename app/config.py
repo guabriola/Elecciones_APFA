@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap5
 from dotenv import load_dotenv
 import os
+from flask_mail import Mail
 
 load_dotenv()
 
@@ -31,6 +32,9 @@ MAIL_DEFAULT_SENDER = os.getenv("MAIL_DEFAULT_SENDER")
 
 # initialize the app with the extension
 db.init_app(app)
+
+mail = Mail()
+mail.init_app(app)
 
 #Bootstrap
 bootstrap = Bootstrap5(app)

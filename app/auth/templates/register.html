@@ -51,7 +51,6 @@
     
     <div class="form-group my-4">
         <label for="{{ form.password.id }}">Contraseña</label>
-        {{ form.password.label(class="text-secondary", label="Contraseña") }}
         {{ form.password(class="form-control") }}
         {% for error in form.password.errors %}
         <span style="color: red;">{{ error }}</span>

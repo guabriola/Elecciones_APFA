@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import datetime,re
-
-
-from models import User, Role, Padron
+from models import User, Role, Padron, Listas
 from config import db,app
 
 
@@ -14,6 +12,7 @@ with app.app_context():
 
 
     if not User.query.filter(User.username == "admin").first():
+        
         # creo los roles
         rol1 = Role(name="admin")
         rol2 = Role(name="std")
@@ -41,9 +40,17 @@ with app.app_context():
             #Agrego Session
             db.session.add(userStd)
             
-            
         #Creo listas En blanco y Anulado
         
+        lista_1 = Listas (
+            nro_lista = "En Blanco",
+        )
+        
+        lista_2 = Listas (
+            nro_lista = "Nulo",
+        )
+        db.session.add(lista_1)
+        db.session.add(lista_2)
         
 
     # datos para el padrón

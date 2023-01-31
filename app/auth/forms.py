@@ -9,7 +9,7 @@ class SignupForm(FlaskForm):
     first_name = StringField("Nombre", validators=[DataRequired()])
     last_name = StringField("Apellido", validators=[DataRequired()])
     password = PasswordField("Password", validators=[DataRequired()])
-    email = StringField("Email") #, validators=[DataRequired(), Email()]
+    email = StringField("Email", validators=[DataRequired(), Email()])
     submit = SubmitField("Registrar")
 
     def __init__(self, *args, **kwargs):
@@ -23,7 +23,24 @@ class SignupForm(FlaskForm):
         padron = Padron.query.filter_by(nro_socio = self.nro_socio.data).first()
         if not padron:
             self.nro_socio.errors.append("El nro de socio no está en el padron")
+            
             return False
+        
+        nro_socio = User.query.filter_by(nro_socio = self.nro_socio.data).first()
+        if nro_socio:
+            self.nro_socio.errors.append("Este número de socio ya está registrado")
+            return False
+        
+        usuario = User.query.filter_by(username = self.username.data).first()
+        if  usuario:
+            self.username.errors.append("El usuario ya existe")
+            return False
+        
+        correo = User.query.filter_by(email = self.email.data).first()
+        if  correo:
+            self.email.errors.append("Otro usuario está registrado con este correo")
+            return False
+                
         return True
        
 class LoginForm(FlaskForm):

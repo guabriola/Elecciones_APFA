@@ -67,6 +67,7 @@ def signup():
 		email = form.email.data,
 		password = form.password.data,
 		nro_socio = form.nro_socio.data	
+  
 	)
 		rol = Role.query.filter(Role.name == "std").first()
 		user.roles.append(rol)

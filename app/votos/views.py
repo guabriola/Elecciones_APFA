@@ -46,12 +46,17 @@ def vote():
 # Ver Votos y porcentaje
 @votos_bp.route("/resultado", methods=["GET","POST"])
 def resultado():
+    total_votos = []
     #cant_votos =  db.session.query(Listas.nro_lista, func.count(Votos.lista_id)).outerjoin(Votos).group_by(Votos.lista_id).all()600706
     cant_votos = db.session.query(Listas.nro_lista, func.count(Votos.lista_id)).outerjoin(Votos, isouter=True).group_by(Listas.nro_lista).all()
     total_votos = db.session.query(Votos.id, func.count(Votos.id)).all()
     total_padron = db.session.query(Padron.id, func.count(Padron.id)).all()
     porcent_votos = round((total_votos[0][1]/total_padron[0][1])*100, 2)
-    return render_template ("cantidad_votos.html", cant_votos = cant_votos, porcent_votos = porcent_votos)
+    cantidad_padron = total_padron[0][1]
+    cantidad_votos = total_votos[0][1]
+    
+    return render_template ("cantidad_votos.html", cant_votos = cant_votos, porcent_votos = porcent_votos, 
+                            cantidad_votos = cantidad_votos, cantidad_padron = cantidad_padron)
 
 # Ya votó
 @votos_bp.route("/ya_voto", methods=["GET","POST"])
